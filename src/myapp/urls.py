@@ -19,14 +19,15 @@ from django.urls import path
 
 from main import views as main_views
 from tweet import views as tweet_views
+from account import views as account_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     
     path('', main_views.home_view, name='home'),
 
-    path('login/', main_views.login_view, name='login'),
-    path('logout/', main_views.logout_view, name='logout'),
+    path('login/', account_views.login_view, name='login'),
+    path('logout/', account_views.logout_view, name='logout'),
 
     path('tweet/', tweet_views.tweet_view, name='tweet'),
 ]
