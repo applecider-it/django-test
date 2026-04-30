@@ -33,3 +33,4 @@ django-admin --version
 
 django-admin startproject myapp
 
+python manage.py startapp main
