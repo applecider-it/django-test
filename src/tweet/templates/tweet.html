@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>ツイート</h2>
+
+<form method="POST">
+    {% csrf_token %}
+    {{ form.content }}
+    <button type="submit">投稿</button>
+</form>
+
+<hr>
+
+{% for tweet in tweets %}
+    <div>
+        <strong>{{ tweet.user.username }}</strong><br>
+        {{ tweet.content }}<br>
+        <small>{{ tweet.created_at }}</small>
+    </div>
+    <hr>
+{% endfor %}
+
+{% endblock %}
