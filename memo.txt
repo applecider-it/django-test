@@ -1,5 +1,5 @@
 
-cd /home/owner/workspace/github/django-test/src
+cd ~/workspace/github/django-test/src
 
 -----------------------------------
 
@@ -10,7 +10,7 @@ django: 3000
 
 -----------------------------------
 
-cd /home/owner/workspace/github/django-test/src
+cd ~/workspace/github/django-test/src
 
 python manage.py runserver
 
@@ -22,7 +22,7 @@ http://127.0.0.1:8000/
 
 セットアップ
 
-cd /home/owner/workspace/github/django-test/src
+cd ~/workspace/github/django-test/src
 
 python manage.py migrate
 
