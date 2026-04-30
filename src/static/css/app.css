@@ -1,0 +1,22 @@
+body {
+  margin: 0;
+}
+
+nav {
+  padding: 1rem;
+  background-color: #eee;
+}
+
+main {
+  padding: 0.5rem;
+}
+
+a {
+  color: #2563eb;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
