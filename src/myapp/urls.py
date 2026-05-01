@@ -17,14 +17,15 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from main import views as main_views
+from home import views as home_views
 from tweet import views as tweet_views
 from account import views as account_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     
-    path('', main_views.home_view, name='home'),
+    path('', home_views.home_view, name='home'),
+    path('development/', home_views.development_view, name='development'),
 
     path('login/', account_views.login_view, name='login'),
     path('logout/', account_views.logout_view, name='logout'),
