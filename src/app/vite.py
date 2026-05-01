@@ -24,12 +24,12 @@ class ViteCtrl:
             return f"{self.dev_url()}/{entry}"
         else:
             self.init_manifest()
-            return f"/assets/{self.manifest[entry]['file']}"
+            return f"/static/build/{self.manifest[entry]['file']}"
 
     def init_manifest(self):
         """Manifestを取得"""
         if self.manifest is None:
-            path = Path(SFW_PROJECT_ROOT) / "public/assets/.vite/manifest.json"
+            path = settings.BASE_DIR / "static/build/.vite/manifest.json"
             with open(path, encoding="utf-8") as f:
                 self.manifest = json.load(f)
 

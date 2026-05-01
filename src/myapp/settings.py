@@ -131,5 +131,6 @@ STATICFILES_DIRS = [BASE_DIR / "static"]
 
 VITE = {
     'dev': True,
+    #'dev': False,
     'port': 5173,
 }

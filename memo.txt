@@ -34,8 +34,21 @@ npm run dev
 
 cd ~/workspace/github/django-test/src
 
+npm ci
+
 python manage.py migrate
 
 python manage.py createsuperuser
 
 admin / admin@locahost.com / adminadmin
+
+-----------------------------------
+
+ビルド
+
+
+npm run build
+
+動作確認
+
+settings.pyのVITE devをfalse

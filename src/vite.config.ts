@@ -18,7 +18,13 @@ export default defineConfig({
     emptyOutDir: true,
     manifest: true,
     rollupOptions: {
-      input: ['assets/js/entrypoints/app.ts', 'assets/css/app.css'],
+      input: [
+        'assets/js/entrypoints/app.ts',
+
+        'assets/js/entrypoints/development/javascript-test.ts',
+
+        'assets/css/app.css',
+      ],
     },
   },
 });
