@@ -66,3 +66,7 @@ npm install alpinejs
 npm i --save-dev @types/alpinejs
 
 npm install axios
+
+-----------------------------------
+
+python manage.py startapp home
