@@ -6,18 +6,17 @@
 <form method="POST">
     {% csrf_token %}
     {{ form.content }}
-    <button type="submit">投稿</button>
+    <button type="submit" class="app-btn-primary">投稿</button>
 </form>
 
-<hr>
-
+<div class="mt-10 space-y-5">
 {% for tweet in tweets %}
-    <div>
-        <strong>{{ tweet.user.username }}</strong><br>
-        {{ tweet.content }}<br>
-        <small>{{ tweet.created_at }}</small>
+    <div class="p-4 border-4 border-gray-400">
+        <div>{{ tweet.content }}</div>
+        <div>by {{ tweet.user.username }}</div>
+        <div>{{ tweet.created_at }}</div>
     </div>
-    <hr>
 {% endfor %}
+</div>
 
 {% endblock %}

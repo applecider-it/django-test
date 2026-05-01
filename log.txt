@@ -49,3 +49,20 @@ python manage.py startapp tweet
 
 python manage.py startapp account
 
+-----------------------------------
+
+npm install -D tailwindcss@^3.4.18 postcss autoprefixer
+
+npx tailwindcss init -p
+
+npm install -D typescript @types/node
+
+npm install vue @vitejs/plugin-vue
+
+npm install -D vite-plugin-full-reload
+
+npm install alpinejs
+
+npm i --save-dev @types/alpinejs
+
+npm install axios

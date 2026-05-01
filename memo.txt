@@ -26,6 +26,10 @@ admin / adminadmin
 
 -----------------------------------
 
+npm run dev
+
+-----------------------------------
+
 セットアップ
 
 cd ~/workspace/github/django-test/src

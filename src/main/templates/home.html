@@ -3,6 +3,11 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
+
+<script type="module" src="{{ vite|asset:'assets/js/entrypoints/test.ts' }}"></script>
+
 <h2>ホームページ</h2>
-<p>Hello Django!</p>
+
+<div id="vue"></div>
+
 {% endblock %}

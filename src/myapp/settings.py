@@ -64,6 +64,11 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+
+                "app.context_processors.my_context",
+            ],
+            "builtins": [
+                "main.templatetags.my_filters",
             ],
         },
     },
@@ -122,3 +127,9 @@ STATIC_URL = 'static/'
 LOGIN_URL = '/login/'
 
 STATICFILES_DIRS = [BASE_DIR / "static"]
+
+
+VITE = {
+    'dev': True,
+    'port': 5173,
+}
