@@ -3,27 +3,26 @@
 {% block title %}ログイン{% endblock %}
 
 {% block content %}
-<h2>ログイン</h2>
+<h2 class="app-h2">ログイン</h2>
 
-<form method="POST">
+<form method="POST" class="space-y-5">
     {% csrf_token %}
     
     <div>
-        <label>ユーザー名</label><br>
-        <input type="text" name="username" required>
+        <label class="app-form-label">ユーザー名</label>
+        <input type="text" name="username" class="app-form-input">
     </div>
 
     <div>
-        <label>パスワード</label><br>
-        <input type="password" name="password" required>
+        <label class="app-form-label">パスワード</label>
+        <input type="password" name="password" class="app-form-input">
     </div>
 
-    <br>
-    <button type="submit">ログイン</button>
+    <button type="submit" class="app-btn-primary">ログイン</button>
 </form>
 
-{% if form.errors %}
-<p style="color:red;">ログインに失敗しました</p>
+{% if error %}
+    <div class="mt-5 text-red-500">{{ error }}</div>
 {% endif %}
 
 {% endblock %}
