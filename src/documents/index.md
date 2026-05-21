@@ -22,7 +22,7 @@ account/ <- アプリケーション
 app/ <- 共通コード
 assets/ <- Vite管理ファイル
 home/ <- アプリケーション
-main/ <- アプリケーション
+main/ <- 共通のアプリケーション
 myproject/ <- 主に設定
 static/ <- 静的ファイル
 templates/ <- 共通テンプレート
