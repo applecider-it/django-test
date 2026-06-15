@@ -20,7 +20,7 @@
 ```
 account/ <- アプリケーション
 app/ <- 共通コード
-assets/ <- Vite管理ファイル
+assets/ <- Vite管理対象ファイル
 home/ <- アプリケーション
 main/ <- 共通のアプリケーション
 myproject/ <- 主に設定
