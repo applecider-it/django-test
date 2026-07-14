@@ -7,8 +7,8 @@
     <link rel="stylesheet" href="{% static 'css/app.css' %}" />
     
     {{ vite.init|safe }}
-    <link rel="stylesheet" href="{{ vite|asset:'assets/css/app.css' }}">
-    <script type="module" src="{{ vite|asset:'assets/js/entrypoints/app.ts' }}"></script>
+    {{ vite|import_css:'assets/css/app.css'|safe  }}
+    {{ vite|import_js:'assets/js/entrypoints/app.ts'|safe }}
   </head>
   <body>
     <div class="p-10 bg-slate-200">

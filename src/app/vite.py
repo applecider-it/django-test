@@ -1,42 +1,61 @@
 import json
 from pathlib import Path
 from django.conf import settings
+from typing import Optional, Dict, Any
 
 class ViteCtrl:
-    """Vite管理"""
+    """Vite管理クラス"""
 
-    def __init__(self):
-        # マニフェストのキャッシュ
-        self.manifest = None
+    def __init__(self) -> None:
+        self.is_dev: bool = settings.VITE['dev']
+        self.dev_url: str = f"http://localhost:{settings.VITE['port']}"
+        self.prod_url: str = "/static/build"
+        self.manifest: Optional[Dict[str, Any]] = {}
 
-    def init(self) -> str:
-        """Viteを使用する準備"""
-        val = ""
+        manifest_path = settings.BASE_DIR / "static/build/.vite/manifest.json"
 
-        if self.is_dev():
-            val = f'<script type="module" src="{self.dev_url()}/@vite/client"></script>'
-
-        return val
-
-    def asset(self, entry: str) -> str:
-        """Viteアセットのパスをmanifestから返す。"""
-        if self.is_dev():
-            return f"{self.dev_url()}/{entry}"
-        else:
-            self.init_manifest()
-            return f"/static/build/{self.manifest[entry]['file']}"
-
-    def init_manifest(self):
-        """Manifestを取得"""
-        if self.manifest is None:
-            path = settings.BASE_DIR / "static/build/.vite/manifest.json"
-            with open(path, encoding="utf-8") as f:
+        if not self.is_dev:
+            with open(manifest_path, "r", encoding="utf-8") as f:
                 self.manifest = json.load(f)
 
-    def is_dev(self) -> bool:
-        """Viteが開発環境か返す"""
-        return settings.VITE['dev']
+    def init(self) -> str:
+        """初期処理"""
+        if self.is_dev:
+            url = f"{self.dev_url}/@vite/client"
+            return self._import_js_tag(url)
+        else:
+            return ""
 
-    def dev_url(self) -> str:
-        """開発環境のURL"""
-        return f"http://localhost:{settings.VITE['port']}"
+    def import_js(self, path: str) -> str:
+        """JSからの読み込み"""
+        if self.is_dev:
+            url = f"{self.dev_url}/{path}"
+            return self._import_js_tag(url)
+        else:
+            data = self.manifest[path]
+            url = f"{self.prod_url}/{data['file']}"
+            html = self._import_js_tag(url)
+
+            # JSから読み込むときに、CSSの読み込みもある場合があるのでその対応
+            if "css" in data:
+                for css in data["css"]:
+                    css_url = f"{self.prod_url}/{css}"
+                    html += self._import_css_tag(css_url)
+
+            return html
+
+    def import_css(self, path: str) -> str:
+        """CSSからの読み込み"""
+        if self.is_dev:
+            url = f"{self.dev_url}/{path}"
+            return self._import_css_tag(url)
+        else:
+            data = self.manifest[path]
+            url = f"{self.prod_url}/{data['file']}"
+            return self._import_css_tag(url)
+
+    def _import_js_tag(self, url: str) -> str:
+        return f'<script type="module" src="{url}"></script>'
+
+    def _import_css_tag(self, url: str) -> str:
+        return f'<link rel="stylesheet" href="{url}" type="text/css" media="all" />'
