@@ -70,3 +70,7 @@ npm install axios
 -----------------------------------
 
 python manage.py startapp home
+
+-----------------------------------
+
+npm install swiper

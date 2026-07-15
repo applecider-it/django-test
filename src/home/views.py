@@ -25,6 +25,14 @@ def development_view(request):
     logger.info(f"tz_local_time: {tz_local_time}")
 
     data = {"val1": "テスト"}
+
+    list = [
+        'images/sample.svg',
+        'images/sample.svg',
+        'images/sample.svg',
+    ]
+
     return render(request, "development.html", {
         "data_json": json.dumps(data),
+        "list": list,
     })

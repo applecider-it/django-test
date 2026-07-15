@@ -2,6 +2,7 @@ import json
 from pathlib import Path
 from django.conf import settings
 from typing import Optional, Dict, Any
+from django.templatetags.static import static
 
 class ViteCtrl:
     """Vite管理クラス"""
@@ -9,7 +10,7 @@ class ViteCtrl:
     def __init__(self) -> None:
         self.is_dev: bool = settings.VITE['dev']
         self.dev_url: str = f"http://localhost:{settings.VITE['port']}"
-        self.prod_url: str = "/static/build"
+        self.prod_url: str = "build"
         self.manifest: Optional[Dict[str, Any]] = {}
 
         manifest_path = settings.BASE_DIR / "static/build/.vite/manifest.json"
@@ -33,13 +34,13 @@ class ViteCtrl:
             return self._import_js_tag(url)
         else:
             data = self.manifest[path]
-            url = f"{self.prod_url}/{data['file']}"
+            url = static(f"{self.prod_url}/{data['file']}")
             html = self._import_js_tag(url)
 
             # JSから読み込むときに、CSSの読み込みもある場合があるのでその対応
             if "css" in data:
                 for css in data["css"]:
-                    css_url = f"{self.prod_url}/{css}"
+                    css_url = static(f"{self.prod_url}/{css}")
                     html += self._import_css_tag(css_url)
 
             return html
@@ -51,7 +52,7 @@ class ViteCtrl:
             return self._import_css_tag(url)
         else:
             data = self.manifest[path]
-            url = f"{self.prod_url}/{data['file']}"
+            url = static(f"{self.prod_url}/{data['file']}")
             return self._import_css_tag(url)
 
     def _import_js_tag(self, url: str) -> str:

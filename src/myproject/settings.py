@@ -24,8 +24,11 @@ SECRET_KEY = 'django-insecure-40v*8^=!4dn%9cbw41!y7&g9y-+n-fvyth6y-i38owza!!rvd!
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+#DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    '*',
+]
 
 
 # Application definition
@@ -133,8 +136,7 @@ STATICFILES_DIRS = [BASE_DIR / "static"]
 
 
 VITE = {
-    'dev': True,
-    #'dev': False,
+    'dev': DEBUG,
     'port': 5173,
 }
 
