@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+
+{{ vite|import_js:'assets/js/entrypoints/development/javascript-test.ts'|safe }}
+
+{% load static %}
+
+<h2 class="app-h2">開発者向けページ</h2>
+
+<div id="vue" data-all="{{ data_json }}"></div>
+
+<div class="swiper-container">
+    <div class="swiper app-feature-swiper1">
+        <div class="swiper-wrapper">
+            {% for val in list %}
+                <div class="swiper-slide">
+                    <img src="{% static val %}" alt="" class="mx-auto" />
+                </div>
+            {% endfor %}
+        </div>
+
+        <div class="swiper-pagination app-feature-swiper1-pagination"></div>
+    </div>
+</div>
+
+{% endblock %}

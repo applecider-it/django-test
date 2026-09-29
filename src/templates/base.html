@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+  <head>
+    <title>{% block title %}{% endblock %}</title>
+    
+    {{ vite.init|safe }}
+    {{ vite|import_css:'assets/css/app.css'|safe  }}
+    {{ vite|import_js:'assets/js/entrypoints/app.ts'|safe }}
+  </head>
+  <body>
+    <div class="p-10 bg-slate-200">
+      <a href="/" class="app-link-normal">Home</a>
+      <a href="/tweet" class="app-link-normal">Tweet</a>
+
+      {% if user.is_authenticated %}
+        <span>ようこそ {{ user.username }} さん</span>
+        <a href="{% url 'logout' %}" class="app-link-normal">Logout</a>
+      {% else %}
+        <a href="{% url 'login' %}" class="app-link-normal">Login</a>
+      {% endif %}
+    </div>
+
+    <div class="p-5">{% block content %}{% endblock %}</div>
+  </body>
+</html>

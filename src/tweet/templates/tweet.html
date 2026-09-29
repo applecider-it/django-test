@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2 class="app-h2">ツイート</h2>
+
+<form method="POST">
+    {% csrf_token %}
+    {{ form.content }}
+    <button type="submit" class="app-btn-primary">投稿</button>
+</form>
+
+<div class="mt-10 space-y-5">
+{% for tweet in tweets %}
+    <div class="p-4 border-4 border-gray-400">
+        <div>{{ tweet.content }}</div>
+        <div>by {{ tweet.user.username }}</div>
+        <div>{{ tweet.created_at }}</div>
+    </div>
+{% endfor %}
+</div>
+
+{% endblock %}

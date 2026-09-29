@@ -1,0 +1,64 @@
+
+cd ~/workspace/github/django-test/src
+
+-----------------------------------
+
+port
+
+django: 3000
+
+
+-----------------------------------
+
+起動
+
+cd ~/workspace/github/django-test/src
+
+foreman start
+
+----
+
+http://127.0.0.1:8000/
+
+test / test1234local
+
+http://127.0.0.1:8000/admin/
+
+admin / adminadmin
+
+----
+
+個別起動
+
+python manage.py runserver
+
+npm run dev
+
+-----------------------------------
+
+セットアップ
+
+cd ~/workspace/github/django-test/src
+
+npm ci
+
+python manage.py migrate
+
+python manage.py createsuperuser
+
+admin / admin@locahost.com / adminadmin
+
+-----------------------------------
+
+ビルド
+
+
+npm run build
+
+動作確認
+
+/myproject/settings.py の VITE dev を false
+
+DEBUGがFalseの状態でローカルで確認
+
+python manage.py runserver --insecure
